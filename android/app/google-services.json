@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "48097463381",
+    "firebase_url": "https://hire-1ccd0.firebaseio.com",
+    "project_id": "hire-1ccd0",
+    "storage_bucket": "hire-1ccd0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:48097463381:android:bc5bb3a0fdb58d103318dc",
+        "android_client_info": {
+          "package_name": "com.raynear.hire"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "48097463381-7hkc9u2u9k5hpp27323mifk8msi3ahs4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-XI8NlJSW4ePqyzS-3uztJcn-PnsmB8o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "48097463381-7hkc9u2u9k5hpp27323mifk8msi3ahs4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
