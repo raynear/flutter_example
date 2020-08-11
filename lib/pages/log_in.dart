@@ -1,7 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:provider/provider.dart';
 
 import 'package:hire/main.dart';
@@ -54,7 +55,15 @@ class Login extends StatelessWidget {
           CachedNetworkImage(
               imageUrl: Provider.of<Account>(context).user.photoUrl,
               placeholder: (context, url) => CircularProgressIndicator(),
-              errorWidget: (context, url, error) => Icon(Icons.error))
+              errorWidget: (context, url, error) => Icon(Icons.error)),
+          RaisedButton(
+              onPressed: () {
+                Firestore.instance
+                    .collection('item')
+                    .add({'item': 'aItem', 'like': 3});
+              },
+              child:
+                  Text('Add Item to Firestore', style: TextStyle(fontSize: 20)))
         ])));
   }
 
