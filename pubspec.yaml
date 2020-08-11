@@ -33,6 +33,9 @@ dependencies:
   cached_network_image:
   provider:
   cloud_firestore:
+  google_maps_flutter:
+  geolocator:
+  camera:
 
 dev_dependencies:
   flutter_test:

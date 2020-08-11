@@ -1,10 +1,16 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
-import 'package:hire/pages/log_in.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+import 'package:hire/pages/log_in.dart';
+import 'package:hire/pages/map.dart';
+import 'package:hire/pages/camera.dart';
+
+var cameras;
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  cameras = await availableCameras();
   runApp(MyApp());
 }
 
@@ -61,10 +67,12 @@ class _MyAppState extends State<MyApp> {
               // closer together (more dense) than on mobile platforms.
               visualDensity: VisualDensity.adaptivePlatformDensity,
             ),
-            initialRoute: "/",
+            initialRoute: "/camera",
             routes: <String, WidgetBuilder>{
               "/": (BuildContext context) => Login(),
               "/login": (BuildContext context) => Login(),
+              "/map": (BuildContext context) => Map(),
+              "/camera": (BuildContext context) => Camera(),
             }));
   }
 }

@@ -62,8 +62,13 @@ class Login extends StatelessWidget {
                     .collection('item')
                     .add({'item': 'aItem', 'like': 3});
               },
-              child:
-                  Text('Add Item to Firestore', style: TextStyle(fontSize: 20)))
+              child: Text('Add Item to Firestore',
+                  style: TextStyle(fontSize: 20))),
+          RaisedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/map');
+              },
+              child: Text('Go To Map'))
         ])));
   }
 
