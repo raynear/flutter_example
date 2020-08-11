@@ -1,4 +1,3 @@
-import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
@@ -7,10 +6,10 @@ import 'package:hire/pages/log_in.dart';
 import 'package:hire/pages/map.dart';
 import 'package:hire/pages/camera.dart';
 
-var cameras;
+//var cameras;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  cameras = await availableCameras();
+//  cameras = await availableCameras();
   runApp(MyApp());
 }
 
