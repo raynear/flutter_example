@@ -7,7 +7,6 @@ import 'package:hire/main.dart';
 class Menu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Provider.of<Account>(context).restoreUser();
     var appBarHeight =
         AppBar().preferredSize.height - MediaQuery.of(context).padding.top;
     return Scaffold(
@@ -22,7 +21,6 @@ class Menu extends StatelessWidget {
                 backgroundImage: CachedNetworkImageProvider(
                   Provider.of<Account>(context).avatar,
                 ),
-                backgroundColor: Colors.transparent,
               ))
         ],
       ),
@@ -50,6 +48,18 @@ class Menu extends StatelessWidget {
             child: Text('Camera'),
             onPressed: () {
               Navigator.pushNamed(context, '/camera');
+            },
+          ),
+          RaisedButton(
+            child: Text('Make QR Code'),
+            onPressed: () {
+              Navigator.pushNamed(context, '/qr');
+            },
+          ),
+          RaisedButton(
+            child: Text('Scan QR Code'),
+            onPressed: () {
+              Navigator.pushNamed(context, '/qr_scan');
             },
           ),
         ]),

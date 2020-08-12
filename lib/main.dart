@@ -7,6 +7,8 @@ import 'package:hire/pages/map.dart';
 import 'package:hire/pages/camera.dart';
 import 'package:hire/pages/cards.dart';
 import 'package:hire/pages/menu.dart';
+import 'package:hire/pages/qr.dart';
+import 'package:hire/pages/qr_scan.dart';
 
 //var cameras;
 void main() async {
@@ -19,7 +21,15 @@ class AppState {
   bool loading;
   FirebaseUser user;
   String avatar = '';
-  AppState(this.loading, this.user);
+  AppState(loading, user) {
+    this.loading = loading;
+    if (user == null) {
+      FirebaseAuth.instance.currentUser().then((user) {
+        this.user = user;
+        this.avatar = user.photoUrl;
+      });
+    }
+  }
 }
 
 class Account with ChangeNotifier {
@@ -30,12 +40,6 @@ class Account with ChangeNotifier {
   get user => app.user;
 
   get avatar => app.avatar;
-
-  void restoreUser() async {
-    app.user = await FirebaseAuth.instance.currentUser();
-    app.avatar = app.user.photoUrl;
-    notifyListeners();
-  }
 
   void changeState(bool newState) {
     app.loading = newState;
@@ -85,6 +89,8 @@ class _MyAppState extends State<MyApp> {
               "/map": (BuildContext context) => Map(),
               "/camera": (BuildContext context) => Camera(),
               "/cards": (BuildContext context) => Cards(),
+              "/qr": (BuildContext context) => QR(),
+              "/qr_scan": (BuildContext context) => QRScan(),
             }));
   }
 }

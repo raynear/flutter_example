@@ -37,6 +37,8 @@ dependencies:
   geolocator:
   camera:
   path_provider:
+  qr_flutter:
+  barcode_scan:
 
 dev_dependencies:
   flutter_test:

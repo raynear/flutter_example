@@ -27,9 +27,9 @@ class _Map extends State<Map> {
                 backgroundColor: Colors.teal[200],
                 child: CircleAvatar(
                   radius: appBarHeight * 0.9,
-                  // backgroundImage: CachedNetworkImageProvider(
-                  //   Provider.of<Account>(context).avatar,
-                  // ),
+                  backgroundImage: CachedNetworkImageProvider(
+                    Provider.of<Account>(context).avatar,
+                  ),
                   backgroundColor: Colors.transparent,
                 ))
           ],

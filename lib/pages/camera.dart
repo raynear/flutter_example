@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -42,10 +43,9 @@ class _Camera extends State<Camera> {
               backgroundColor: Colors.teal[200],
               child: CircleAvatar(
                 radius: appBarHeight * 0.9,
-                // backgroundImage: CachedNetworkImageProvider(
-                //   Provider.of<Account>(context).avatar,
-                // ),
-                backgroundColor: Colors.transparent,
+                backgroundImage: CachedNetworkImageProvider(
+                  Provider.of<Account>(context).avatar,
+                ),
               ))
         ],
       ),
@@ -67,7 +67,7 @@ class _Camera extends State<Camera> {
             final path = join(
               // 본 예제에서는 임시 디렉토리에 이미지를 저장합니다. `path_provider`
               // 플러그인을 사용하여 임시 디렉토리를 찾으세요.
-              (await getApplicationDocumentsDirectory()).path,
+              (await getExternalStorageDirectory()).path,
               '${DateTime.now()}.png',
             );
 
@@ -75,11 +75,34 @@ class _Camera extends State<Camera> {
 
             // 사진 촬영을 시도하고 저장되는 경로를 로그로 남깁니다.
             await _controller.takePicture(path);
+
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => DisplayPictureScreen(imagePath: path),
+              ),
+            );
           } catch (e) {
             print(e);
           }
         },
       ),
+    );
+  }
+}
+
+class DisplayPictureScreen extends StatelessWidget {
+  final String imagePath;
+
+  const DisplayPictureScreen({Key key, this.imagePath}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Display the Picture')),
+      // 이미지는 디바이스에 파일로 저장됩니다. 이미지를 보여주기 위해 주어진
+      // 경로로 `Image.file`을 생성하세요.
+      body: Image.file(File(imagePath)),
     );
   }
 }
