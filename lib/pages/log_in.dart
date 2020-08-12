@@ -63,7 +63,7 @@ class Login extends StatelessWidget {
           Text(Provider.of<Account>(context).user.displayName),
           Text(Provider.of<Account>(context).user.email),
           CachedNetworkImage(
-              imageUrl: Provider.of<Account>(context).user.photoUrl,
+              imageUrl: Provider.of<Account>(context).avatar,
               placeholder: (context, url) => CircularProgressIndicator(),
               errorWidget: (context, url, error) => Icon(Icons.error)),
         ])));

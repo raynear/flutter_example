@@ -16,12 +16,6 @@ class _Map extends State<Map> {
 
   @override
   Widget build(BuildContext context) {
-    print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
-    print(AppBar().preferredSize.height);
-    print(AppBar().preferredSize.shortestSide);
-    print(AppBar().preferredSize.longestSide);
-    print(MediaQuery.of(context).padding.top);
-
     var appBarHeight =
         AppBar().preferredSize.height - MediaQuery.of(context).padding.top;
     return Scaffold(
@@ -33,9 +27,9 @@ class _Map extends State<Map> {
                 backgroundColor: Colors.teal[200],
                 child: CircleAvatar(
                   radius: appBarHeight * 0.9,
-                  backgroundImage: CachedNetworkImageProvider(
-                    Provider.of<Account>(context).avatar,
-                  ),
+                  // backgroundImage: CachedNetworkImageProvider(
+                  //   Provider.of<Account>(context).avatar,
+                  // ),
                   backgroundColor: Colors.transparent,
                 ))
           ],

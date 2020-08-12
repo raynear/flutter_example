@@ -22,11 +22,6 @@ class AppState {
   AppState(this.loading, this.user);
 }
 
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
 class Account with ChangeNotifier {
   AppState app = AppState(false, null);
 
@@ -35,6 +30,12 @@ class Account with ChangeNotifier {
   get user => app.user;
 
   get avatar => app.avatar;
+
+  void restoreUser() async {
+    app.user = await FirebaseAuth.instance.currentUser();
+    app.avatar = app.user.photoUrl;
+    notifyListeners();
+  }
 
   void changeState(bool newState) {
     app.loading = newState;
@@ -46,6 +47,11 @@ class Account with ChangeNotifier {
     app.avatar = user.photoUrl;
     notifyListeners();
   }
+}
+
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {

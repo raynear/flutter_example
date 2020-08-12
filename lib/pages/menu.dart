@@ -7,6 +7,7 @@ import 'package:hire/main.dart';
 class Menu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Provider.of<Account>(context).restoreUser();
     var appBarHeight =
         AppBar().preferredSize.height - MediaQuery.of(context).padding.top;
     return Scaffold(
