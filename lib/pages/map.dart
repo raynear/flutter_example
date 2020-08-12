@@ -1,8 +1,10 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:provider/provider.dart';
+
+import 'package:hire/main.dart';
 
 class Map extends StatefulWidget {
   @override
@@ -14,8 +16,30 @@ class _Map extends State<Map> {
 
   @override
   Widget build(BuildContext context) {
+    print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+    print(AppBar().preferredSize.height);
+    print(AppBar().preferredSize.shortestSide);
+    print(AppBar().preferredSize.longestSide);
+    print(MediaQuery.of(context).padding.top);
+
+    var appBarHeight =
+        AppBar().preferredSize.height - MediaQuery.of(context).padding.top;
     return Scaffold(
-        appBar: AppBar(title: Text('Map')),
+        appBar: AppBar(
+          title: Text('Map'),
+          actions: [
+            CircleAvatar(
+                radius: appBarHeight * 1.0,
+                backgroundColor: Colors.teal[200],
+                child: CircleAvatar(
+                  radius: appBarHeight * 0.9,
+                  backgroundImage: CachedNetworkImageProvider(
+                    Provider.of<Account>(context).avatar,
+                  ),
+                  backgroundColor: Colors.transparent,
+                ))
+          ],
+        ),
         body: Center(
           child: FutureBuilder(
               future: this._getCurrentPosition(),

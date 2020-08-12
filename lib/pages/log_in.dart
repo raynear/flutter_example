@@ -1,5 +1,4 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -40,10 +39,21 @@ class Login extends StatelessWidget {
   }
 
   Widget _main(BuildContext context) {
+    var appBarHeight =
+        AppBar().preferredSize.height - MediaQuery.of(context).padding.top;
     return Scaffold(
         appBar: AppBar(title: Text('logged in'), actions: <Widget>[
-          IconButton(
-              icon: Icon(Icons.account_circle),
+          FlatButton(
+              child: CircleAvatar(
+                  radius: appBarHeight * 1.0,
+                  backgroundColor: Colors.teal[200],
+                  child: CircleAvatar(
+                    radius: appBarHeight * 0.9,
+                    backgroundImage: CachedNetworkImageProvider(
+                      Provider.of<Account>(context).avatar,
+                    ),
+                    backgroundColor: Colors.transparent,
+                  )),
               onPressed: () {
                 _signOut(context);
               })
@@ -56,19 +66,6 @@ class Login extends StatelessWidget {
               imageUrl: Provider.of<Account>(context).user.photoUrl,
               placeholder: (context, url) => CircularProgressIndicator(),
               errorWidget: (context, url, error) => Icon(Icons.error)),
-          RaisedButton(
-              onPressed: () {
-                Firestore.instance
-                    .collection('item')
-                    .add({'item': 'aItem', 'like': 3});
-              },
-              child: Text('Add Item to Firestore',
-                  style: TextStyle(fontSize: 20))),
-          RaisedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/map');
-              },
-              child: Text('Go To Map'))
         ])));
   }
 

@@ -5,6 +5,8 @@ import 'package:provider/provider.dart';
 import 'package:hire/pages/log_in.dart';
 import 'package:hire/pages/map.dart';
 import 'package:hire/pages/camera.dart';
+import 'package:hire/pages/cards.dart';
+import 'package:hire/pages/menu.dart';
 
 //var cameras;
 void main() async {
@@ -16,6 +18,7 @@ void main() async {
 class AppState {
   bool loading;
   FirebaseUser user;
+  String avatar = '';
   AppState(this.loading, this.user);
 }
 
@@ -31,6 +34,8 @@ class Account with ChangeNotifier {
 
   get user => app.user;
 
+  get avatar => app.avatar;
+
   void changeState(bool newState) {
     app.loading = newState;
     notifyListeners();
@@ -38,6 +43,7 @@ class Account with ChangeNotifier {
 
   void setUser(FirebaseUser user) {
     app.user = user;
+    app.avatar = user.photoUrl;
     notifyListeners();
   }
 }
@@ -66,12 +72,13 @@ class _MyAppState extends State<MyApp> {
               // closer together (more dense) than on mobile platforms.
               visualDensity: VisualDensity.adaptivePlatformDensity,
             ),
-            initialRoute: "/camera",
+            initialRoute: "/",
             routes: <String, WidgetBuilder>{
-              "/": (BuildContext context) => Login(),
+              "/": (BuildContext context) => Menu(),
               "/login": (BuildContext context) => Login(),
               "/map": (BuildContext context) => Map(),
               "/camera": (BuildContext context) => Camera(),
+              "/cards": (BuildContext context) => Cards(),
             }));
   }
 }

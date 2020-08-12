@@ -1,7 +1,11 @@
 import 'package:camera/camera.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:provider/provider.dart';
+
+import 'package:hire/main.dart';
 
 class Camera extends StatefulWidget {
   @override
@@ -26,8 +30,25 @@ class _Camera extends State<Camera> {
 
   @override
   Widget build(BuildContext context) {
+    var appBarHeight =
+        AppBar().preferredSize.height - MediaQuery.of(context).padding.top;
+
     return Scaffold(
-      appBar: AppBar(title: Text("Camera")),
+      appBar: AppBar(
+        title: Text("Camera"),
+        actions: [
+          CircleAvatar(
+              radius: appBarHeight * 1.0,
+              backgroundColor: Colors.teal[200],
+              child: CircleAvatar(
+                radius: appBarHeight * 0.9,
+                backgroundImage: CachedNetworkImageProvider(
+                  Provider.of<Account>(context).avatar,
+                ),
+                backgroundColor: Colors.transparent,
+              ))
+        ],
+      ),
       body: FutureBuilder<void>(
           future: _findCamera(),
           builder: (context, snapshot) {
