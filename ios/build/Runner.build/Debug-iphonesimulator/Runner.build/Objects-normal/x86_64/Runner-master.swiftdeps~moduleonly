@@ -1,0 +1,5 @@
+version: "Apple Swift version 5.2.4 (swiftlang-1103.0.32.9 clang-1103.0.32.53)"
+options: "8391599a80ed2ca2b46ac5f5ae9222cc"
+build_time: [1597275830, 265307000]
+inputs:
+  "/Users/raynear/Project/Nalin/flutter/hire/ios/Runner/AppDelegate.swift": [1597274553, 517275156]

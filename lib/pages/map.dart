@@ -45,11 +45,12 @@ class _Map extends State<Map> {
                     break;
                   default:
                     print(snapshot.data);
-                    var position =
-                        LatLng(snapshot.data.latitude, snapshot.data.longitude);
+                    var position = LatLng(0.0,
+                        0.0); //snapshot.data.latitude, snapshot.data.longitude);
                     print("test ${position.latitude} ${position.longitude}");
                     var here = CameraPosition(
-                      target: LatLng(position.latitude, position.longitude),
+                      target: LatLng(
+                          0.0, 0.0), //position.latitude, position.longitude),
                       zoom: 18.0,
                     );
                     return GoogleMap(
